@@ -1,0 +1,18 @@
+[build]
+  publish = "."
+  command = ""
+
+[functions]
+  directory = "netlify/functions"
+
+[[plugins]]
+  package = "@netlify/blobs"
+
+[functions."submission-created"]
+  included_files = []
+
+[dev]
+  autoLaunch = false
+
+
+
