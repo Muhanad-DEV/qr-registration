@@ -17,7 +17,15 @@ document.querySelector('#regForm').addEventListener('submit', async (e) => {
   document.querySelector('#timestamp').value = now.toISOString();
   document.querySelector('#date').value = toISODateOnly(now);
 
-  e.target.submit();
+  try {
+    await fetch('/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, timestamp: now.toISOString(), date: toISODateOnly(now) })
+    });
+  } catch (err) {
+    // ignore for now
+  }
 
   e.target.reset();
   document.querySelector('#name').focus();

@@ -5,8 +5,12 @@
 [functions]
   directory = "netlify/functions"
 
-[functions."submission-created"]
-  included_files = []
+
+[[redirects]]
+  from = "/register"
+  to = "/.netlify/functions/register"
+  status = 200
+  force = true
 
 [dev]
   autoLaunch = false

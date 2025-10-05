@@ -24,13 +24,13 @@
         <h1>التسجيل</h1>
         <p class="subtitle">أدخل اسمك للتسجيل</p>
       </div>
-      <form id="regForm" class="card-body" name="register" method="POST" data-netlify="true" netlify>
+      <form id="regForm" class="card-body">
         <label>
           الاسم
           <input id="name" name="name" type="text" autocomplete="name" placeholder="فلان الفلاني" aria-label="الاسم" required />
         </label>
-        <input type="hidden" name="timestamp" id="timestamp" />
-        <input type="hidden" name="date" id="date" />
+        <input type="hidden" id="timestamp" />
+        <input type="hidden" id="date" />
         <div class="row">
           <button type="submit" class="primary" id="submitBtn">تسجيل</button>
         </div>
