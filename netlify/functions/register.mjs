@@ -1,4 +1,4 @@
-import { getStore } from 'netlify:blobs';
+import { getStore } from '@netlify/blobs';
 
 function escapeCsv(value) {
   const s = String(value);
