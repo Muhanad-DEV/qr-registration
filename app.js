@@ -1,3 +1,4 @@
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxRI2E67RHDBNL2bQqpMSdIWI0VZcn30_NqbwJ2z_sq4C1oe--wUU3CFvTPLwfIAniP/exec';
 function toISODateOnly(date) {
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, '0');
@@ -17,15 +18,18 @@ document.querySelector('#regForm').addEventListener('submit', async (e) => {
   document.querySelector('#timestamp').value = now.toISOString();
   document.querySelector('#date').value = toISODateOnly(now);
 
+  // Submit via fetch so the page doesn't navigate
   try {
-    await fetch('/register', {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('timestamp', now.toISOString());
+    formData.append('date', toISODateOnly(now));
+    await fetch(GAS_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, timestamp: now.toISOString(), date: toISODateOnly(now) })
+      mode: 'no-cors', // allow cross-origin POST to Apps Script
+      body: formData
     });
-  } catch (err) {
-    // ignore for now
-  }
+  } catch (_) {}
 
   e.target.reset();
   document.querySelector('#name').focus();
